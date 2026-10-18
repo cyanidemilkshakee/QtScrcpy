@@ -176,6 +176,8 @@ set(QC_UI_SOURCES
     ui/toolform.h
     ui/toolform.cpp
     ui/toolform.ui
+    ui/adbsuitedialog.h
+    ui/adbsuitedialog.cpp
     ui/keyoverlaywidget.h
     ui/keyoverlaywidget.cpp
     ui/videoform.h

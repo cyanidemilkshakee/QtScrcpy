@@ -46,6 +46,7 @@
 
 #include "config.h"
 #include "dialog.h"
+#include "adbsuitedialog.h"
 #include "ui_dialog.h"
 #include "videoform.h"
 #include "../groupcontroller/groupcontroller.h"
@@ -447,6 +448,28 @@ void Dialog::initUI()
     });
 
     ui->presetConfigBtn->setVisible(false);
+
+    auto *adbSuiteButton = new QPushButton(tr("ADB Suite…"), ui->leftWidget);
+    adbSuiteButton->setToolTip(tr("Open device management, app tools, file transfer, diagnostics, and ADB workflows."));
+    ui->verticalLayout_5->insertWidget(1, adbSuiteButton);
+    connect(adbSuiteButton, &QPushButton::clicked, this, [this] {
+        QString adbPath = Config::getInstance().getAdbPath().trimmed();
+        if (adbPath.isEmpty()) {
+#ifdef Q_OS_WIN32
+            adbPath = QDir(QCoreApplication::applicationDirPath()).filePath("adb.exe");
+#else
+            adbPath = QDir(QCoreApplication::applicationDirPath()).filePath("adb");
+#endif
+            if (!QFileInfo(adbPath).isFile()) adbPath = QStandardPaths::findExecutable("adb");
+        }
+        QStringList devices;
+        for (int i = 0; i < ui->serialBox->count(); ++i) {
+            const QString serial = ui->serialBox->itemText(i).trimmed();
+            if (!serial.isEmpty()) devices.append(serial);
+        }
+        AdbSuiteDialog suite(adbPath, devices, ui->serialBox->currentText().trimmed(), this);
+        suite.exec();
+    });
 
     // Populate the codec-mode combo. Index 0 is the static "Default (Auto)"
     // item from the .ui; every registered encoder preset is appended below it.
