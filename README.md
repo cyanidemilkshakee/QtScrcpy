@@ -90,20 +90,6 @@ You can control all your phones at the same time.
 
 In Simple Mode, select multiple connected devices and save them as a named control group. Applying a group makes its first available device the controller and the remaining group members follow it. Groups are saved in user settings.
 
-## ADB Suite
-
-Open **ADB Suite…** from the main window to use the integrated Android device tools. The suite includes:
-
-- Connected-device discovery and device property inspection
-- Third-party app listing (with an option to include system apps), package/activity/permission inspection, APK installation, launch, uninstall, and base APK export
-- File push and pull between the computer and a selected device
-- Android 11+ wireless ADB pairing and connection helpers
-- Live Logcat with a text filter and log export, plus device bug report capture
-- ADB shell commands and forward/reverse port mapping
-- JSON workflows containing sequential shell commands, with an explicit confirmation before running them on all connected devices
-
-Actions that modify or remove apps, mappings, or device state are scoped to the selected device; uninstalling an app and removing a port rule require confirmation. Wireless pairing and connection use separate ports shown in Android's Wireless debugging settings.
-
 The Advanced Config page can reconnect to the last Wi-Fi target automatically. The recording path row shows available disk space and includes a shortcut to open the output folder. Copy Diagnostics creates a local summary of app, OS, ADB, device-count, keymap-count, and recording-space details without copying device serial numbers.
 
 ## Star History
